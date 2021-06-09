@@ -1,0 +1,18 @@
+class Solution:
+    def maxPerformance(self, n: int, speed: List[int], efficiency: List[int], k: int) -> int:
+        mod = 10**9+7
+        
+        bes=0
+        tot=0
+        h=[]
+        for eff,sp in sorted(zip(efficiency,speed), reverse=True):
+            tot+=sp
+            heapq.heappush(h,sp)
+            
+            while len(h)>k:
+                rem=heapq.heappop(h)
+                tot-=rem
+            
+            bes=max(bes,eff*tot)
+        return bes%mod
+            
