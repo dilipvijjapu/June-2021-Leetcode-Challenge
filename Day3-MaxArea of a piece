@@ -1,0 +1,21 @@
+class Solution:
+    def maxArea(self, h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:
+        horizontalCuts.append(0)
+        horizontalCuts.append(h)
+        
+        verticalCuts.append(0)
+        verticalCuts.append(w)
+        hor=sorted(horizontalCuts)
+        vor=sorted(verticalCuts)
+        
+        mw=0
+        mh=0
+        for i,j in zip(hor,hor[1:]):
+            mw=max(mw,j-i)
+        for k,l in zip(vor,vor[1:]):
+            mh=max(mh,l-k)
+        
+        return (mw*mh)%(10**9+7)
+        
+        
+        
