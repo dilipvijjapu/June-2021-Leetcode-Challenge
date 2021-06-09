@@ -1,0 +1,22 @@
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        N=len(cost)
+        i=10*10
+        icached=[False]*(N+1)
+        cacahed=[i]*(N+1)
+        
+        def mincost(step):
+            if step >= N+1:
+                return i
+            if icached[step]:
+                return cacahed[step]
+            if step == N:
+                return 0
+            c=cost[step]+min(mincost(step+1),mincost(step+2))
+            
+            icached[step]=True
+            cacahed[step]=c
+            
+            return c
+        return min(mincost(0),mincost(1))
+        
